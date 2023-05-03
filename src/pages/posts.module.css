@@ -1,0 +1,40 @@
+.createNew {
+	background: white;
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+	box-sizing: border-box;
+	border-radius: 5px;
+	width: 80%;
+	margin-bottom: 2rem;
+	border: 2px solid black;
+}
+
+.input {
+	padding: 0.5rem;
+	width: 80%;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.submitWrapper {
+	border: 2px solid black;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-left: none;
+	padding: 0.2rem;
+	font-size: large;
+	cursor: pointer;
+}
+
+.submitButton {
+	border: none;
+	background: white;
+	cursor: pointer;
+}
+
+.postList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

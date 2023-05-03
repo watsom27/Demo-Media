@@ -1,0 +1,17 @@
+.white {
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+.white:hover {
+	text-decoration: underline;
+}
+
+.black {
+	color: black;
+	text-decoration: none;
+}
+
+.black:hover {
+	text-decoration: underline;
+}
