@@ -10,6 +10,8 @@ Styling is done using css modules with modules stored next to the component/page
 
 Code is formatted using dprint, run `npm run fmt` or `npm run fmt:check` to format or check the formatting respectively.
 
+Fontawesome has been used for the icons.
+
 ## Development
 
 `npm run dev` will build the project and start the dev server on `localhost:3000`
