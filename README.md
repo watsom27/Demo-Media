@@ -1,6 +1,6 @@
 # Demo Social Media
 
-Simple social mediat type app to showcase React and NextJs usage.
+Simple social media type app to showcase React and NextJs usage.
 
 Users can create an account and login, then can view posts made by other users, in addition to being able to contribute their own posts.
 
