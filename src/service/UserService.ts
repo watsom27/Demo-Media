@@ -34,7 +34,7 @@ class UserService {
             const parsedContents = JSON.parse(fileContents);
 
             if (Array.isArray(parsedContents)) {
-                this.users = parsedContents;
+                this.users.push(...parsedContents);
             }
         } catch {
             console.info("Error opening users file, does it exist?");

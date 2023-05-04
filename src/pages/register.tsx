@@ -87,7 +87,7 @@ export default function Login(): JSX.Element {
                         className={ classNames(form.input, form.submit) }
                         type="button"
                         value="Login"
-                        onClick={ () => location.pathname = "/register" }
+                        onClick={ () => location.pathname = "/login" }
                     />
                 </section>
             </form>

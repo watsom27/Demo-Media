@@ -10,8 +10,6 @@ export default function handler(
     const { method, body } = req;
     const { name, username, password, confirmPassword } = JSON.parse(body);
 
-    console.log(body);
-
     switch (method) {
         case "POST":
             const loginResult = userService.register(name, username, password, confirmPassword);
