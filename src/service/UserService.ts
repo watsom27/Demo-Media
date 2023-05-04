@@ -11,6 +11,7 @@ import { Uuid } from "~/types/Uuid";
  */
 interface User {
     userId: Uuid;
+    name: string;
     username: string;
     passwordHash: string;
 }
@@ -20,6 +21,7 @@ interface User {
  */
 export interface UserView {
     userId: Uuid;
+    name: string;
     username: string;
 }
 
@@ -42,7 +44,12 @@ class UserService {
     /**
      * Register for an account
      */
-    public register(username: string, password: string, confirmPassword: string): Result<UserView, string> {
+    public register(
+        name: string,
+        username: string,
+        password: string,
+        confirmPassword: string,
+    ): Result<UserView, string> {
         const nameValidationResult = this.validateUsername(username);
         const passwordValidationResult = this.validatePassword(password, confirmPassword);
 
@@ -53,6 +60,7 @@ class UserService {
         } else {
             const user = {
                 userId: v4(),
+                name,
                 username,
                 passwordHash: sha1(password),
             };
@@ -63,6 +71,7 @@ class UserService {
 
             return Ok({
                 userId: user.userId,
+                name: user.name,
                 username: user.username,
             });
         }
@@ -75,7 +84,7 @@ class UserService {
 
         return user
                 && user.passwordHash === hash
-            ? Ok({ userId: user.userId, username: user.username })
+            ? Ok({ userId: user.userId, name: user.name, username: user.username })
             : Err("Username or password is incorrect");
     }
 
@@ -88,8 +97,9 @@ class UserService {
      * Load a list of all the users we currently have, mostly used for debugging currently
      */
     public getAll(): UserView[] {
-        return this.users.map(({ userId, username }) => ({
+        return this.users.map(({ userId, name, username }) => ({
             userId,
+            name,
             username,
         }));
     }
@@ -97,6 +107,36 @@ class UserService {
     /** Get a specific user by username */
     public getByUsername(username: string): UserView | undefined {
         return this.users.find((user) => user.username === username);
+    }
+
+    public async updateUser(
+        username: string,
+        name: string,
+        password: string,
+        confirmPassword: string,
+    ): Promise<Result<UserView, string>> {
+        const user = this.users.find((user) => user.username === username);
+
+        if (user) {
+            const validatePassword = this.validatePassword(password, confirmPassword);
+
+            if (validatePassword.ok) {
+                user.name = name;
+                user.passwordHash = sha1(password);
+
+                await this.persist();
+
+                return Ok({
+                    userId: user.userId,
+                    name: user.name,
+                    username: user.username,
+                });
+            } else {
+                return Err(validatePassword.error);
+            }
+        } else {
+            return Err("User not found");
+        }
     }
 
     private async persist(): Promise<void> {

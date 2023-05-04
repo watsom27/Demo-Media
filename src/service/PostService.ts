@@ -3,6 +3,7 @@ import fsPromises from "fs/promises";
 import { Uuid } from "~/types/Uuid";
 
 import { UserView } from "~/service/UserService";
+import { Err, Ok, Result } from "~/types/Result";
 
 export interface Post {
     postId: Uuid;
@@ -39,6 +40,19 @@ class PostService {
     /** Get all the current posts */
     public getPosts(): Post[] {
         return this.posts;
+    }
+
+    public async likeById(postId: string): Promise<Result<number, string>> {
+        const post = this.posts.find((post) => post.postId === postId);
+
+        if (post) {
+            post.likes += 1;
+            await this.persist();
+
+            return Ok(post.likes);
+        } else {
+            return Err("Post not found");
+        }
     }
 
     private async persist(): Promise<void> {

@@ -1,11 +1,13 @@
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { FormEvent, useState } from "react";
+import Head from "next/head";
+import { useState } from "react";
 
 import { Error } from "~/components/common/Error";
 import { Refresh } from "~/components/control/Refresh";
 import { Post as PostComponent } from "~/components/posts/Post";
+import { TAB_TITLE_SUFFIX } from "~/config/Constants";
 import { getServerSidePropsForProtectedPage } from "~/hooks/ProtectedPage";
 import { Post, postService } from "~/service/PostService";
 
@@ -59,6 +61,9 @@ export default function Posts(props: PostsProps): JSX.Element {
 
     return (
         <>
+            <Head>
+                <title>{ `My Posts${TAB_TITLE_SUFFIX}` }</title>
+            </Head>
             <h2>Latest Posts</h2>
             <Refresh doRefresh={ reloadPosts } />
             <Error error={ error } />

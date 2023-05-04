@@ -8,13 +8,13 @@ export default function handler(
     res: NextApiResponse,
 ) {
     const { method, body } = req;
-    const { username, password, confirmPassword } = JSON.parse(body);
+    const { name, username, password, confirmPassword } = JSON.parse(body);
 
     console.log(body);
 
     switch (method) {
         case "POST":
-            const loginResult = userService.register(username, password, confirmPassword);
+            const loginResult = userService.register(name, username, password, confirmPassword);
 
             if (loginResult.ok) {
                 const expiresDate = new Date();

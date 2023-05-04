@@ -1,0 +1,9 @@
+.confirmPasswordWrapper {
+	display: flex;
+	flex-direction: column;
+	display: none;
+}
+
+.visible {
+	display: flex;
+}

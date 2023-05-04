@@ -1,14 +1,11 @@
 import classNames from "classnames";
+import Link from "next/link";
 import { PropsWithChildren } from "react";
 
 import wrapper from "~/components/layout/Wrapper.module.css";
 import a from "~/styles/a.module.css";
 
-export interface WrapperProps {
-    isLoggedOut?: boolean;
-}
-
-export function Wrapper({ children, isLoggedOut }: PropsWithChildren<WrapperProps>): JSX.Element {
+export function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
     const navLinkClass = classNames(wrapper.navLink, a.black);
 
     return (
@@ -16,12 +13,11 @@ export function Wrapper({ children, isLoggedOut }: PropsWithChildren<WrapperProp
             <section>
                 <header className={ wrapper.header }>
                     <nav>
-                        <a className={ navLinkClass } href="/">Home</a>
-                        <a className={ navLinkClass } href="/posts">Posts</a>
-                        <a className={ navLinkClass } href="/account">My Account</a>
-                        { isLoggedOut
-                            ? <a className={ navLinkClass } href="/login">Login</a>
-                            : <a className={ navLinkClass } href="/api/v1/users/logout">Logout</a> }
+                        <Link className={ navLinkClass } href="/">Home</Link>
+                        <Link className={ navLinkClass } href="/posts">Posts</Link>
+                        <Link className={ navLinkClass } href="/account">My Account</Link>
+
+                        <a className={ navLinkClass } href="/api/v1/users/logout">Login/Logout</a>
                     </nav>
                 </header>
                 { children }

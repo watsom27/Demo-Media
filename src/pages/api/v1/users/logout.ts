@@ -11,7 +11,7 @@ export default function handler(
     switch (method) {
         case "GET":
             res.setHeader("set-cookie",
-                `${USER_COOKIE_HANDLE}=${cookies[USER_COOKIE_HANDLE]}; path=/; samesite=lax; httponly;`);
+                `${USER_COOKIE_HANDLE}=${cookies[USER_COOKIE_HANDLE]}; path=/; samesite=lax; httponly; Max-Age=-1`);
             res.redirect("/");
 
             break;

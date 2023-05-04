@@ -2,7 +2,8 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Post } from "~/service/PostService";
 
-import post from "~/components/posts/Post.module.css";
+import { useState } from "react";
+import postStyles from "~/components/posts/Post.module.css";
 
 interface PostProps {
     post: Post;
@@ -10,19 +11,34 @@ interface PostProps {
 }
 
 export function Post(props: PostProps): JSX.Element {
+    const [post, setPost] = useState(props.post);
+
+    const likePost = async () => {
+        setPost({
+            ...post,
+            likes: post.likes + 1,
+        });
+
+        const init: RequestInit = {
+            method: "PATCH",
+        };
+
+        await fetch(`/api/v1/posts/like/${post.postId}`, { method: "PATCH" });
+    };
+
     return (
-        <div className={ post.wrapper }>
+        <div className={ postStyles.wrapper }>
             <i>
-                <b>{ props.post.user.username }</b> says:
+                <b>{ post.user.username }</b> says:
             </i>
-            { props.post.content }
+            { post.content }
             <span>
                 <FontAwesomeIcon
                     icon={ faThumbsUp }
-                    onClick={ () => alert("like") }
-                    className={ post.like }
+                    onClick={ likePost }
+                    className={ postStyles.like }
                 />{"   "}
-                { props.post.likes }
+                { post.likes }
             </span>
         </div>
     );

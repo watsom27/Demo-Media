@@ -3,7 +3,7 @@ import { FormEvent, useRef, useState } from "react";
 
 import { Error } from "~/components/common/Error";
 
-import login from "~/pages/login.module.css";
+import form from "~/styles/form.module.css";
 
 export default function Login(): JSX.Element {
     const [error, setError] = useState<string>();
@@ -39,10 +39,10 @@ export default function Login(): JSX.Element {
             <h2>Login</h2>
             <Error error={ error } slim />
             <form onSubmit={ onFormSubmit }>
-                <section className={ login.loginWrapper }>
+                <section className={ form.formWrapper }>
                     <label htmlFor="username">Username</label>
                     <input
-                        className={ login.input }
+                        className={ form.input }
                         type="text"
                         name="username"
                         value={ username }
@@ -51,7 +51,7 @@ export default function Login(): JSX.Element {
 
                     <label htmlFor="password">Password</label>
                     <input
-                        className={ login.input }
+                        className={ form.input }
                         type="password"
                         name="password"
                         ref={ passwordRef }
@@ -59,9 +59,9 @@ export default function Login(): JSX.Element {
                         onChange={ (e) => setPassword(e.target.value) }
                     />
 
-                    <input className={ classNames(login.input, login.submit) } type="submit" value="Login" />
+                    <input className={ classNames(form.input, form.submit) } type="submit" value="Login" />
                     <input
-                        className={ classNames(login.input, login.submit) }
+                        className={ classNames(form.input, form.submit) }
                         type="button"
                         value="Register"
                         onClick={ () => location.pathname = "/register" }

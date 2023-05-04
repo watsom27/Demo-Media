@@ -8,7 +8,9 @@
         "start": "next start",
         "lint": "next lint",
         "fmt:check": "dprint check",
-        "fmt": "dprint fmt"
+        "fmt": "dprint fmt",
+        "tsc": "tsc --noEmit",
+        "tsc:watch": "tsc --noEmit -w"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
