@@ -6,7 +6,6 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint",
         "fmt:check": "dprint check",
         "fmt": "dprint fmt",
         "tsc": "tsc --noEmit",

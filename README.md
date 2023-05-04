@@ -1,38 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Demo Social Media
 
-## Getting Started
+Simple social mediat type app to showcase React and NextJs usage.
 
-First, run the development server:
+Users can create an account and login, then can view posts made by other users, in addition to being able to contribute their own posts.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Posts and User data is stored in a text file currently, since this project is not intended to demonstrate backend development I did not put much time into making those two areas watertight and beautiful. However, in theory, you would only need to update `UserService.ts` and `PostService.ts` to upgrade this to a better storage medium.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Styling is done using css modules with modules stored next to the component/page they are for, except in the case of common styles that are used in multiple places. These are stored in `src/styles`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Code is formatted using dprint, run `npm run fmt` or `npm run fmt:check` to format or check the formatting respectively.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Development
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+`npm run dev` will build the project and start the dev server on `localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`npm run build` will run a production build.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`npm run tsc` or `npm run tsc:watch` will run the typescript compiler.
